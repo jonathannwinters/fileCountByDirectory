@@ -17,7 +17,7 @@
 
 # EndUser Can Set These Variables
 Path=".";
-MaxDepth=5;
+MaxDepth=10;
 
 
 #backup current IFS variable
