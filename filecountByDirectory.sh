@@ -6,7 +6,7 @@
 # Description: A linux shell script that recursively goes through every    
 # directory and finds the file+dir count. Then sorts descending by count. 
 # Results are written to a file in the current directory called 
-# TempCountFile.csv                                   
+# SortedCountFile.csv                                   
 #                                                               
 # Author: Jonathan N. Winters, jnw25@cornell.edu                           
 # Date:   March 14, 2019
@@ -17,7 +17,7 @@
 
 
 # EndUser Can Set These Variables
-Path=".";
+Path="/Users/jonathannwinters/Public/";
 MaxDepth=10;
 
 
@@ -32,10 +32,13 @@ dirs=$(find $Path -maxdepth $MaxDepth -type d | while read dir; do echo $dir"," 
 #convert this string into an array
 dirArray=($dirs);
 
-# Intialize and clear any existing temp file
+# Intialize and clear any existing temp file and Sorted output file
 touch TempCountFile.csv ;
 rm TempCountFile.csv;
 touch TempCountFile.csv;
+touch SortedCountFile.csv ;
+rm SortedCountFile.csv;
+touch SortedCountFile.csv;
 
 #loop through the array and get the file+dir counts in each directory
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
@@ -45,8 +48,9 @@ for ((i=0; i<${#dirArray[@]}; ++i));  do
 done
 
 # sort and output the TempFile
-sort -k1 -n -r TempCountFile.csv ; 
-#rm TempCountFile.tsv;
+sort -k1 -n -r TempCountFile.csv >> SortedCountFile.csv ; 
+#rm TempCountFile.csv;
+#rm SortedCountFile.csv;
 
 #reset the IFS variable back to before running this script
 IFS=$OIFS;
