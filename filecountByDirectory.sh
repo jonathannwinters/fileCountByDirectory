@@ -25,16 +25,16 @@ dirs=$(find $Path -maxdepth 2 -type d | while read dir; do echo $dir"," | tr -d 
 dirArray=($dirs);
 
 # Intialize and clear any existing temp file
-touch TempCountFile.tsv ;
-rm TempCountFile.tsv;
-touch TempCountFile.tsv;
+touch TempCountFile.csv ;
+rm TempCountFile.csv;
+touch TempCountFile.csv;
 
 
 #loop through the array and get the file+dir counts in each directory
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
         dirName="${dirArray[$i]}"; 
         count=`(ls ${dirArray[$i]}  | wc -l) | awk '{$1=$1};1'`;
-        echo -e "$count\t$dirName" >> TempCountFile.tsv;
+        echo -e "$count, $dirName" >> TempCountFile.csv;
 
 
         
@@ -48,7 +48,7 @@ for ((i=0; i<${#dirArray[@]}; ++i));  do
 done
 
 # sort and output the TempFile
-sort -k1 -n -r TempCountFile.tsv ; 
+sort -k1 -n -r TempCountFile.csv ; 
 #rm TempCountFile.tsv;
 
 
