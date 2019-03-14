@@ -1,5 +1,4 @@
 #!/bin/bash
-#!!!!!!!!!!!!!!!!!!!!!! WORK IN PROGRESS DO NOT USE !!!!!!!!!!!!!!!!!!!!!!!
 
 ############################################################################
 # Title: fileCountByDirectory.sh                                                   
@@ -17,22 +16,39 @@
 OIFS=$IFS;
 IFS=",";
 
+
 #create CSV string of all directories starting in current directory
 dirs=$(find . -maxdepth 2 -type d | while read dir; do echo $dir"," | cut -c 3- | tr -d '\r' | tr -d '\n';  done) 
 
 #convert this string into an array
 dirArray=($dirs);
 
+# Intialize and clear any existing temp file
+touch TempCountFile.tsv ;
+rm TempCountFile.tsv;
+touch TempCountFile.tsv;
+
+
 #loop through the array and get the file+dir counts in each directory
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
         dirName="${dirArray[$i]}"; 
         count=`(ls ${dirArray[$i]}  | wc -l) | awk '{$1=$1};1'`;
-        echo -e "$count : $dirName"  ;
-        #POTENTIAL WORK IN PROGRESS sort -n -t: -k 1         | sort -n -t: -k 1
+        echo -e "$count\t$dirName" >> TempCountFile.tsv;
 
+
+        
+        #| sort -n -k 2 ;
+        
+        #| sort -rn ;
+        #   du -sk * | sort -rn 
+        # | sort -rh | head -20 ;
+        #POTENTIAL WORK IN PROGRESS sort -n -t: -k 1         | sort -n -t: -k 1
+        #du -ah . | sort -rh | head -20
 done
 
-
+# sort and output the TempFile
+sort -k1 -n -r TempCountFile.tsv ; 
+#rm TempCountFile.tsv;
 
 
 
