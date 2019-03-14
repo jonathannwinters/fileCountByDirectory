@@ -4,7 +4,9 @@
 # Title: fileCountByDirectory.sh                                                   
 #                                                                          
 # Description: A linux shell script that recursively goes through every    
-# directory and finds the file+dir count. Then sorts descending by count.                                    
+# directory and finds the file+dir count. Then sorts descending by count. 
+# Results are written to a file in the current directory called 
+# TempCountFile.csv                                   
 #                                                               
 # Author: Jonathan N. Winters, jnw25@cornell.edu                           
 # Date:   March 13, 2019
