@@ -28,13 +28,11 @@ declare -A countArray
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
         dirName="${dirArray[$i]}"; 
         count=`(ls ${dirArray[$i]}  | wc -l) | awk '{$1=$1};1'`;
-        #countArray[$dirName]=$count
+        echo -e "$count : $dirName"  ;
+        #POTENTIAL WORK IN PROGRESS sort -n -t: -k 1         | sort -n -t: -k 1
 
 done
 
-
-
-#sort -n -t: -k 1         | sort -n -t: -k 1
 
 
 
