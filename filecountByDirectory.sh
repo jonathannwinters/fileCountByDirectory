@@ -22,7 +22,6 @@ dirs=$(find . -maxdepth 2 -type d | while read dir; do echo $dir"," | cut -c 3- 
 
 #convert this string into an array
 dirArray=($dirs);
-declare -A countArray
 
 #loop through the array and get the file+dir counts in each directory
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
