@@ -17,7 +17,7 @@
 
 
 # EndUser Can Set These Variables
-Path="/Users/jonathannwinters/Public/";
+Path=".";
 MaxDepth=10;
 
 
