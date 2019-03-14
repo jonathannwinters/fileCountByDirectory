@@ -12,14 +12,20 @@
 #
 ############################################################################
 
-#backup current IFS variable
-OIFS=$IFS;
-IFS=",";
+
 
 
 # EndUser Can Set These Variables
 Path=".";
 MaxDepth=5;
+
+
+#backup current IFS variable
+OIFS=$IFS;
+IFS=",";
+
+
+
 
 #create CSV string of all directories starting in current directory
 dirs=$(find $Path -maxdepth $MaxDepth -type d | while read dir; do echo $dir"," | tr -d '\r' | tr -d '\n';  done) 
