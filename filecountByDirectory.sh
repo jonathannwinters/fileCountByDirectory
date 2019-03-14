@@ -9,11 +9,10 @@
 # TempCountFile.csv                                   
 #                                                               
 # Author: Jonathan N. Winters, jnw25@cornell.edu                           
-# Date:   March 13, 2019
-# Version: 0.1
+# Date:   March 14, 2019
+# Version: 0.2
 #
 ############################################################################
-
 
 
 
@@ -22,12 +21,10 @@ Path=".";
 MaxDepth=10;
 
 
+
 #backup current IFS variable
 OIFS=$IFS;
 IFS=",";
-
-
-
 
 #create CSV string of all directories starting in current directory
 dirs=$(find $Path -maxdepth $MaxDepth -type d | while read dir; do echo $dir"," | tr -d '\r' | tr -d '\n';  done) 
@@ -40,7 +37,6 @@ touch TempCountFile.csv ;
 rm TempCountFile.csv;
 touch TempCountFile.csv;
 
-
 #loop through the array and get the file+dir counts in each directory
 for ((i=0; i<${#dirArray[@]}; ++i));  do    
         dirName="${dirArray[$i]}"; 
@@ -51,8 +47,6 @@ done
 # sort and output the TempFile
 sort -k1 -n -r TempCountFile.csv ; 
 #rm TempCountFile.tsv;
-
-
 
 #reset the IFS variable back to before running this script
 IFS=$OIFS;
